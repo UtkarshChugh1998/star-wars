@@ -1,24 +1,23 @@
-import React from 'react'
-import logo from './logo.svg'
+import React, { useRef, useState } from 'react'
 import './App.css'
+import { useCharacterList } from './hooks/useCharacterList'
+import { Loader } from './components/common/Loader'
+import { CharacterList } from './components/common/CharacterList'
 
 function App() {
+  const isLoading = useRef<boolean>(true)
+  const [data, setData] = useState<any[]>([])
+  const [error, setError] = useState<any>(null)
+  useCharacterList(isLoading, setData, setError)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {isLoading.current ? (
+        <Loader />
+      ) : error ? (
+        <div>Error occured</div>
+      ) : data ? (
+        <CharacterList data={data} />
+      ) : null}
     </div>
   )
 }
