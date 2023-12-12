@@ -1,4 +1,4 @@
-import { CharacterBox } from './components/CharacterBox'
+import { CharacterBox } from './CharacterBox'
 
 export const CharacterList = (props: any) => {
   const { data } = props
