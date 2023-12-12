@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react'
 import './App.css'
 import { useCharacterList } from './hooks/useCharacterList'
 import { Loader } from './components/common/Loader'
-import { CharacterList } from './components/common/CharacterList'
+import { CharacterList } from './CharacterList'
 
 function App() {
   const isLoading = useRef<boolean>(true)
@@ -10,7 +10,8 @@ function App() {
   const [error, setError] = useState<any>(null)
   useCharacterList(isLoading, setData, setError)
   return (
-    <div>
+    <div className="page" data-testid="homePage">
+      <div className="header">Star Wars Wiki</div>
       {isLoading.current ? (
         <Loader />
       ) : error ? (

@@ -4,7 +4,7 @@ export const useHomeWorld = (
   url: string,
   isLoading: any,
   setPlanetData: any,
-  setError: any,
+  setError: any
 ) => {
   useEffect(() => {
     const splitUrl = url.split('/')
@@ -20,8 +20,8 @@ export const useHomeWorld = (
     fetch(url, {
       method: 'GET',
       headers: {
-        'Content-Type': 'application/json',
-      },
+        'Content-Type': 'application/json'
+      }
     })
       .then((response) => {
         return response.json()
