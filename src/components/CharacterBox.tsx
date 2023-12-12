@@ -1,15 +1,19 @@
 import React, { useRef, useState } from 'react'
 import { useHomeWorld } from '../hooks/useHomeWorld'
 import { useNavigate } from 'react-router-dom'
-export const CharacterBox = (props: any) => {
+import { Character, Planet } from '../config/types'
+
+type ICharacterBox = {
+  character: Character
+}
+export const CharacterBox = (props: ICharacterBox) => {
   const { character } = props
   const isLoading = useRef<boolean>(true)
-  const [planetData, setPlanetData] = useState<any>(null)
+  const [planetData, setPlanetData] = useState<Planet | null>(null)
   const [error, setError] = useState<any>(null)
   const navigate = useNavigate()
 
   const handleClick = () => {
-    console.log('Clicked ******')
     const characterUrl: string = character.url
     const splitUrl = characterUrl.split('/')
     const characterIndex = splitUrl[splitUrl.length - 2]
