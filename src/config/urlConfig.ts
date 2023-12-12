@@ -1,4 +1,4 @@
-const baseUrl = 'https://swapi.dev/api/'
+const baseUrl = 'https://swapi.dev/api'
 
 const getCharacterList = () => {
   return `${baseUrl}/people/?page=1`
@@ -9,5 +9,5 @@ const getCharacterPlanet = (api: string) => {
 }
 export const urls = {
   getCharacterList,
-  getCharacterPlanet,
+  getCharacterPlanet
 }

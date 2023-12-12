@@ -7,11 +7,12 @@ export const CharacterBox = (props: any) => {
   const [planetData, setPlanetData] = useState<any>(null)
   const [error, setError] = useState<any>(null)
   const navigate = useNavigate()
+
   const handleClick = () => {
     const characterUrl: string = character.url
     const splitUrl = characterUrl.split('/')
     const characterIndex = splitUrl[splitUrl.length - 2]
-    navigate(`/people/${characterIndex}`)
+    navigate(`/people/${characterIndex}`, { state: { character: character } })
   }
 
   useHomeWorld(character.homeworld, isLoading, setPlanetData, setError)
@@ -20,7 +21,11 @@ export const CharacterBox = (props: any) => {
       {error ? (
         <div>Error occured.. Please try again later.</div>
       ) : (
-        <div className="characterBox" onClick={handleClick}>
+        <div
+          className="characterBox"
+          onClick={handleClick}
+          data-testid="listitem"
+        >
           <div className="headerContainer">
             <div>Name: {character.name}</div>
             <div>Gender: {character.gender?.toUpperCase()}</div>
