@@ -11,6 +11,7 @@ import { BrowserRouter, MemoryRouter } from 'react-router-dom'
 import { setupServer } from 'msw/node'
 import { rest } from 'msw'
 import userEvent from '@testing-library/user-event'
+import { AppRoutes } from '../components/AppRoutes'
 
 const server = setupServer(
   rest.get(urls.getCharacterList(), (req, res, ctx) => {
@@ -61,16 +62,14 @@ test('renders the Character List Component', async () => {
   await waitFor(() => expect(screen.getAllByTestId('listitem').length).toBe(4))
 })
 
-// test('check navigation', async () => {
-//   render(
-//     <BrowserRouter>
-//       <App />
-//     </BrowserRouter>
-//   )
-//   const elements = await screen.findAllByTestId('listitem')
-//   const user = userEvent.setup()
-//   await user.click(elements[0])
-//   await screen.findByTestId('person')
-//   // const personComponent = screen.getByTestId('person')
-//   // await screen.findByTestId('person')
-// })
+test('check navigation', async () => {
+  render(
+    <BrowserRouter>
+      <AppRoutes />
+    </BrowserRouter>
+  )
+  const elements = await screen.findAllByTestId('listitem')
+  const user = userEvent.setup()
+  await user.click(elements[0])
+  await screen.findByTestId('person')
+})
