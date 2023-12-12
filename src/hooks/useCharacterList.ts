@@ -36,6 +36,7 @@ export const useMovieList = (
   setError: any
 ) => {
   useEffect(() => {
+    // Waiting for all the fetch calls to complete and return combined result in array.
     Promise.all(
       urls.map((url) =>
         fetch(url, {
@@ -59,5 +60,6 @@ export const useMovieList = (
       isLoading.current = false
       setMovieData(responseArr)
     })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 }

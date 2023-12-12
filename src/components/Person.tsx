@@ -5,6 +5,7 @@ import { useHomeWorld } from '../hooks/useHomeWorld'
 import { Element } from './common/Element'
 
 export const Person = (props: any) => {
+  console.log('Inside Person **************')
   const params = useParams()
   const {
     state: { character }
@@ -24,7 +25,7 @@ export const Person = (props: any) => {
     setPlanetError
   )
   return (
-    <div className="page">
+    <div className="page" data-testid="person">
       <div className="header">{character.name}</div>
       <div className="section">
         <div className="sectionHeader">Personal Details</div>

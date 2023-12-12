@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react'
 import './App.css'
 import { useCharacterList } from './hooks/useCharacterList'
 import { Loader } from './components/common/Loader'
-import { CharacterList } from './CharacterList'
+import { CharacterList } from './components/CharacterList'
 
 function App() {
   const isLoading = useRef<boolean>(true)

@@ -2,6 +2,22 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+## To run the project
+
+### 1.) npm install
+### 2.) npm run start
+
+## ESlint and Prettier
+Project also has ESLint linter, and prettier tool configuration for following the standard practices while coding.
+
+## For setting up the ESLint and Prettier Config ( Visual Studio)
+### Download ESLint plugin from the marketPlace.
+### Restart Visual Studio.
+### Open the View menu option in toolbar, and select -> Command Palette
+### Select Restart ESLint Server Option from the Command Palette
+
+
 ## Available Scripts
 
 In the project directory, you can run:

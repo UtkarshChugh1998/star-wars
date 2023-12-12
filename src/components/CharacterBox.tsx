@@ -9,6 +9,7 @@ export const CharacterBox = (props: any) => {
   const navigate = useNavigate()
 
   const handleClick = () => {
+    console.log('Clicked ******')
     const characterUrl: string = character.url
     const splitUrl = characterUrl.split('/')
     const characterIndex = splitUrl[splitUrl.length - 2]
@@ -25,6 +26,7 @@ export const CharacterBox = (props: any) => {
           className="characterBox"
           onClick={handleClick}
           data-testid="listitem"
+          data-characterid={character.name}
         >
           <div className="headerContainer">
             <div>Name: {character.name}</div>

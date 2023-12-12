@@ -1,7 +1,5 @@
-import React from 'react'
-import { render, screen, waitFor } from '@testing-library/react'
+import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import App from '../App'
-import fetchMock from 'jest-fetch-mock'
 import {
   characterListMock,
   mocker2,
@@ -9,9 +7,10 @@ import {
   planetMockData
 } from '../mockData'
 import { urls } from '../config/urlConfig'
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, MemoryRouter } from 'react-router-dom'
 import { setupServer } from 'msw/node'
 import { rest } from 'msw'
+import userEvent from '@testing-library/user-event'
 
 const server = setupServer(
   rest.get(urls.getCharacterList(), (req, res, ctx) => {
@@ -34,23 +33,26 @@ afterAll(() => {
 })
 
 test('renders the Application', () => {
-  render(<App />)
+  render(
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  )
   const homePageElement = screen.getByTestId('homePage')
   expect(homePageElement).toBeInTheDocument()
 })
 
 test('renders the header component', () => {
-  render(<App />)
+  render(
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  )
   const headerComponent = screen.getByText(/Star Wars Wiki/i)
   expect(headerComponent).toBeInTheDocument()
 })
 
 test('renders the Character List Component', async () => {
-  const mockData = { mocker2 }
-  fetchMock.mockResponseOnce(JSON.stringify(mockData), {
-    url: urls.getCharacterList()
-  })
-
   render(
     <BrowserRouter>
       <App />
@@ -58,3 +60,17 @@ test('renders the Character List Component', async () => {
   )
   await waitFor(() => expect(screen.getAllByTestId('listitem').length).toBe(4))
 })
+
+// test('check navigation', async () => {
+//   render(
+//     <BrowserRouter>
+//       <App />
+//     </BrowserRouter>
+//   )
+//   const elements = await screen.findAllByTestId('listitem')
+//   const user = userEvent.setup()
+//   await user.click(elements[0])
+//   await screen.findByTestId('person')
+//   // const personComponent = screen.getByTestId('person')
+//   // await screen.findByTestId('person')
+// })
