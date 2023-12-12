@@ -3,17 +3,17 @@ import { useMovieList } from '../hooks/useCharacterList'
 import { useRef, useState } from 'react'
 import { useHomeWorld } from '../hooks/useHomeWorld'
 import { Element } from './common/Element'
+import { Movie, Planet } from '../config/types'
 
 export const Person = (props: any) => {
-  console.log('Inside Person **************')
   const params = useParams()
   const {
     state: { character }
   } = useLocation()
   const isLoading = useRef<boolean>(true)
   const isLoadingPlanet = useRef<boolean>(true)
-  const [movieList, setMovieList] = useState<any[]>([])
-  const [planetData, setPlanetData] = useState<any>({})
+  const [movieList, setMovieList] = useState<Movie[]>([])
+  const [planetData, setPlanetData] = useState<Planet | null>(null)
   const [planetError, setPlanetError] = useState<any>(null)
   const [error, setError] = useState<any>(null)
   const characterId = params.id

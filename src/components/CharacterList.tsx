@@ -1,10 +1,14 @@
+import { Character, CharacterResponse } from '../config/types'
 import { CharacterBox } from './CharacterBox'
 
-export const CharacterList = (props: any) => {
+type ICharacterList = {
+  data: CharacterResponse
+}
+export const CharacterList = (props: ICharacterList) => {
   const { data } = props
   return (
     <div className="listContainer">
-      {data?.results?.map((character: any, index: number) => (
+      {data?.results?.map((character: Character, index: number) => (
         <CharacterBox key={index} character={character} />
       ))}
     </div>
