@@ -55,11 +55,17 @@ export const Person = (props: any) => {
       <div className="section">
         <div className="sectionHeader">Movies</div>
         <div className="detailsContainer">
-          {movieList?.map((movie, index) => (
-            <div key={index} className="element">
-              {index + 1}: {movie.title}
-            </div>
-          ))}
+          {isLoading.current ? (
+            <div>Loading...</div>
+          ) : (
+            <>
+              {movieList?.map((movie, index) => (
+                <div key={index} className="element">
+                  {index + 1}: {movie.title}
+                </div>
+              ))}
+            </>
+          )}
         </div>
       </div>
     </div>
